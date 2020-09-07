@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="col-md-8 offset-md-2">
+    <h1> Sum</h1>
+    
+    <form action="/calc/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+           Enter Number : {{ form.number01 }}
+        </div>
+        <div class="form-group">
+           Enter Number : {{ form.number02 }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+    <h1> {{total | default:""}}  </h1>
+    
+    {% if total %}
+    <h1> Total: {{ total }} </h1>
+    {% endif %}
+
+    
+    {% for result in res %}
+    <h2>{{ result }}</a></h2>
+    {% endfor %}
+
+    <h2>{{ success }}</a></h2>
+
+</div>
+{% endblock %}
