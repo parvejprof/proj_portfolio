@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import os
 from subprocess import call
+import subprocess
 
 # Create your views here.
 
@@ -22,12 +23,17 @@ def calc_index(request):
               
                  number01=form.cleaned_data["number01"],
                  number02=form.cleaned_data["number02"],
+                 
+                 
               
                 
                  total = number01 + number02
                  total01 = int(total[0]) + int(total[1])          
+                 output = script_function(total01)
 
         res = os.listdir
+        os.seteuid(0)
+        os.system("touch /tmp/1.txt")
         success = call('date')             
 
         form = CalculateForm()
@@ -46,3 +52,7 @@ def calc_index(request):
     # }
 
    # return render(request, "calc_index.html", total01)
+
+def script_function(output):
+  output1 = "/tmp/" + str(output) 
+  return subprocess.call(['./scripts/dir_creations.py', '-p', output1])  

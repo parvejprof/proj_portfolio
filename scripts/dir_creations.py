@@ -1,0 +1,13 @@
+#!/usr/bin/python
+
+
+import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-p")
+args = parser.parse_args()
+
+directory = args.p
+if not os.path.exists(directory):
+    os.makedirs(directory)
