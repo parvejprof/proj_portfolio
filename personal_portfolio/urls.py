@@ -23,5 +23,6 @@ urlpatterns = [
     path("projects/", include("app_portfolio.urls")),
     path("blog/", include("blog.urls")),
     path("calc/", include("calc.urls")),
+    path("controlpanel/", include("control_panel.urls")),
 
 ]

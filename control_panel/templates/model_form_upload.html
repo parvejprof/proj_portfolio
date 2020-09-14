@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_content %}
+<h1>Import Website</h1>
+<hr>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Import</button>
+  </form>
+
+  <p><a href="#">Return to home</a></p>
+  <h2>{{description}}<h2>
+{% endblock %}

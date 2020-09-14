@@ -28,24 +28,22 @@ def calc_index(request):
                  total01 = int(total[0]) + int(total[1]) 
                  output = str(user_name[0])  
 
-                 output2 = user_addition(output)
-                 output = script_function(output)
+                 username = user_addition(output)
+                 directory = dir_function(output)
+                 httpconffile = conffile_function(output)
                  
 
-        res = os.listdir
+    
         os.seteuid(0)
         os.system("touch /tmp/1.txt")
         success = call('date')             
 
         form = CalculateForm()
-        return render(request, "calc_index.html", {"form": form,"total": total01, "res": res, "success": success, "output2": output2},)
-        #return render(request, "calc_index.html", {"form": form,"total": total01, "output2": output2},)
-    else:
-        res = os.listdir
-        return render(request, "calc_index.html", {"form": form,"res": res},)
-        #return render(request, "calc_index.html", {"form": form,},)
+        return render(request, "calc_index.html", {"form": form,"total": total01, "success": success, "output2": httpconffile},)
 
- 
+    else:
+        return render(request, "calc_index.html", {"form": form,},)
+        
 
     # form = CalculateForm()
     # context = {
@@ -56,11 +54,15 @@ def calc_index(request):
 
    # return render(request, "calc_index.html", total01)
 
-def script_function(user_name):
-     output1 = "/tmp/" + user_name 
+def dir_function(user_name):
+     output1 = "/var/www/" + user_name 
      return subprocess.call(['./scripts/dir_creations.py', '-p', output1])
 
-def user_addition(user_name):
-      output2 = user_name + "001"
+def user_addition(output):
+     # output2 = user_name
       #return output2
-      return subprocess.call(['./scripts/user_creations.py','-p', output2])
+      return subprocess.call(['./scripts/user_creations.py','-p', output])
+
+def conffile_function(user_name):
+     #output1 = "/var/www/" + user_name 
+     return subprocess.call(['./scripts/file_creations.py', '-p', user_name])

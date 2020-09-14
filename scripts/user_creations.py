@@ -4,6 +4,10 @@ import os
 import subprocess 
 import sys 
 import getpass 
+import crypt
+
+
+
 
 
 import argparse
@@ -25,10 +29,12 @@ def add_user():
      # Asking for users password 
      #password = getpass.getpass()
      password = "123456"
+     encPass = crypt.crypt(password,"22")
          
      try: 
          # executing useradd command using subprocess module 
-         subprocess.run(['useradd', '-p', password, username])       
+         #os.system("useradd -p "+encPass+" johnsmith")
+         subprocess.run(['useradd', '-p', encPass, username])       
          #subprocess.run(['useradd', username])       
      except: 
          print("Failed to add user.")                      

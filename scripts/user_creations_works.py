@@ -1,4 +1,4 @@
-
+#!/usr/local/bin/python3
 # importing linrary 
 import os 
 import subprocess 
